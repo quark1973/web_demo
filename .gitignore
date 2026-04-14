@@ -1,0 +1,13 @@
+# 配置文件
+config/config.yml
+
+# IDE
+.idea/
+.vscode/
+
+# 日志
+*.log
+
+# 二进制文件
+*.exe
+*.dll

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo 应用</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 Demo 应用</h1>
+            <div class="auth-status" id="authStatus">
+                <span id="userInfo">未登录</span>
+                <button id="logoutBtn" class="btn btn-secondary" style="display:none;">退出登录</button>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="auth">🔐 认证</button>
+            <button class="tab-btn" data-tab="exchange">💱 汇率</button>
+            <button class="tab-btn" data-tab="articles">📝 文章</button>
+        </nav>
+
+        <div class="response-box" id="responseBox">
+            <span id="responseText"></span>
+            <button class="close-btn" onclick="closeResponse()">×</button>
+        </div>
+
+        <div class="tab-content active" id="auth">
+            <div class="card">
+                <h2>注册</h2>
+                <form id="registerForm">
+                    <input type="text" id="regUsername" placeholder="用户名" required>
+                    <input type="password" id="regPassword" placeholder="密码" required>
+                    <button type="submit" class="btn btn-primary">注册</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>登录</h2>
+                <form id="loginForm">
+                    <input type="text" id="loginUsername" placeholder="用户名" required>
+                    <input type="password" id="loginPassword" placeholder="密码" required>
+                    <button type="submit" class="btn btn-primary">登录</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="tab-content" id="exchange">
+            <div class="card">
+                <h2>获取汇率</h2>
+                <button class="btn btn-primary" onclick="getExchangeRates()">获取汇率</button>
+            </div>
+
+            <div class="card auth-required">
+                <h2>创建汇率 (需要登录)</h2>
+                <form id="exchangeForm">
+                    <input type="text" id="baseCurrency" placeholder="基准货币 (如 USD)" required>
+                    <input type="text" id="targetCurrency" placeholder="目标货币 (如 CNY)" required>
+                    <input type="number" step="0.01" id="rate" placeholder="汇率" required>
+                    <button type="submit" class="btn btn-primary">创建汇率</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="tab-content" id="articles">
+            <div class="card">
+                <h2>获取文章列表</h2>
+                <button class="btn btn-primary" onclick="getArticles()">获取文章</button>
+            </div>
+
+            <div class="card auth-required">
+                <h2>创建文章 (需要登录)</h2>
+                <form id="articleForm">
+                    <input type="text" id="articleTitle" placeholder="标题" required>
+                    <textarea id="articleContent" placeholder="内容" required></textarea>
+                    <input type="text" id="articlePreview" placeholder="预览" required>
+                    <button type="submit" class="btn btn-primary">创建文章</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>获取单个文章</h2>
+                <input type="number" id="articleId" placeholder="文章ID">
+                <button class="btn btn-primary" onclick="getArticle()">获取</button>
+            </div>
+
+            <div class="card auth-required">
+                <h2>文章点赞 (需要登录)</h2>
+                <input type="number" id="likeArticleId" placeholder="文章ID">
+                <button class="btn btn-primary" onclick="likeArticle()">点赞</button>
+                <button class="btn btn-secondary" onclick="getLikes()">获取点赞数</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
